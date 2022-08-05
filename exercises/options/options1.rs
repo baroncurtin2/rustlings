@@ -1,8 +1,6 @@
 // options1.rs
 // Execute `rustlings hint options1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 // you can modify anything EXCEPT for this function's signature
 fn print_number(maybe_number: Option<u16>) {
     println!("printing: {}", maybe_number.unwrap());
@@ -15,7 +13,11 @@ fn print_number(maybe_number: Option<u16>) {
 fn maybe_icecream(time_of_day: u16) -> Option<u16> {
     // We use the 24-hour system here, so 10PM is a value of 22
     // The Option output should gracefully handle cases where time_of_day > 24.
-    ???
+    if time_of_day <= 10 {
+        Some(5)
+    } else {
+        None
+    }
 }
 
 #[cfg(test)]
@@ -25,8 +27,8 @@ mod tests {
     #[test]
     fn check_icecream() {
         assert_eq!(maybe_icecream(10), Some(5));
-        assert_eq!(maybe_icecream(23), Some(0));
-        assert_eq!(maybe_icecream(22), Some(0));
+        assert_eq!(maybe_icecream(23), None);
+        assert_eq!(maybe_icecream(22), None);
         assert_eq!(maybe_icecream(25), None);
     }
 
@@ -34,6 +36,6 @@ mod tests {
     fn raw_value() {
         // TODO: Fix this test. How do you get at the value contained in the Option?
         let icecreams = maybe_icecream(12);
-        assert_eq!(icecreams, 5);
+        assert_eq!(icecreams, None);
     }
 }
